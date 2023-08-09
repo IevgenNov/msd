@@ -1,0 +1,11 @@
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+.chartContainer {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
