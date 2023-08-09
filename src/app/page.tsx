@@ -2,6 +2,7 @@ import DefaultLayout from "@/layouts/default/defaultLayout";
 import { DownloadOutlined, AlignLeftOutlined, FilterOutlined, MessageOutlined } from '@ant-design/icons';
 import { Space, Button, Row, Col, Card, Avatar } from "antd";
 import LinearBarChart from "@/components/linearBarChart/linearBarChart";
+import IntervalChart from "@/components/intervalChart/intervalChart";
 
 
 export default function Home() {
@@ -35,6 +36,7 @@ export default function Home() {
         </Col>
         <Col span={11} offset={2}>
           <Card title="Chart Title" bordered={false}>
+            <IntervalChart />
             <Row justify="space-between" align="middle">
               <Col>
                 <Avatar src="https://i.pravatar.cc/150?img=3" />
