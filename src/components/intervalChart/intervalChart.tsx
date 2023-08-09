@@ -15,7 +15,8 @@ export default function IntervalChart() {
     }
   }, []);
 
-  function renderBarChart(container) {
+  function renderBarChart(container: HTMLDivElement | null) {
+    if (!container) return;
     const chart = new Chart({
       container,
       theme: 'classic',
