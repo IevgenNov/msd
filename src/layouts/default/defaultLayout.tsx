@@ -4,7 +4,7 @@ import { Layout, theme, Row, Col } from 'antd';
 
 const { Header, Content } = Layout;
 
-const DefaultLayout = ({ children }) => {
+const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();

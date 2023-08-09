@@ -2,6 +2,7 @@
 import { Chart } from '@antv/g2';
 import { useEffect, useRef } from 'react';
 import styles from './linearBarChart.module.css'
+import {ICovidData, IPublicAPIResponse} from "@/types/intervalChart";
 
 export default function LinearBarChart() {
   const container = useRef<HTMLDivElement | null>(null);
@@ -14,7 +15,7 @@ export default function LinearBarChart() {
   }, []);
 
   function renderBarChart(container: HTMLDivElement | null) {
-    if (!container) return;
+    if (!container) return null;
     const chart = new Chart({
       container,
       theme: 'classic',
@@ -31,12 +32,12 @@ export default function LinearBarChart() {
         transform: [
           {
             type: 'custom',
-            callback: ({ data }) => data
+            callback: ({ data }: IPublicAPIResponse) => data
           }
         ],
       })
-      .encode('x', data => data.outcomes.death.total.value)
-      .encode('y', data => data.cases.total.calculated.population_percent)
+      .encode('x', (data: ICovidData) => data.outcomes.death.total.value)
+      .encode('y', (data: ICovidData) => data.cases.total.calculated.population_percent)
       .axis('x', { title: 'Cases number' })
       .axis('y', { title: 'Population Percent (%)' })
 

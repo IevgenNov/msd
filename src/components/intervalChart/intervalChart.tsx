@@ -3,6 +3,7 @@ import { Chart } from '@antv/g2';
 import { useEffect, useRef } from 'react';
 import groupByMonth from "@/utils/group";
 import styles from './intervalChart.module.css'
+import { IPublicAPIResponse } from "@/types/intervalChart";
 
 
 export default function IntervalChart() {
@@ -16,7 +17,7 @@ export default function IntervalChart() {
   }, []);
 
   function renderBarChart(container: HTMLDivElement | null) {
-    if (!container) return;
+    if (!container) return null;
     const chart = new Chart({
       container,
       theme: 'classic',
@@ -34,14 +35,14 @@ export default function IntervalChart() {
         transform: [
           {
             type: 'custom',
-            callback: ({ data }) => groupByMonth(data)
+            callback: ({ data }: IPublicAPIResponse) => groupByMonth(data)
           }
         ],
       })
       .encode('y', 'deaths')
       .encode('x', 'month')
-      .axis('x', { title: 'Cases number' })
-      .axis('y', { title: 'Population Percent (%)' })
+      .axis('x', { title: 'Months' })
+      .axis('y', { title: 'Deaths number'})
 
     chart.render();
 

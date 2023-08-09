@@ -1,23 +1,8 @@
 import moment from "moment";
+import { ICovidData, ICovidDeathData } from "@/types/intervalChart";
 
-type InputType = {
-  date: string;
-  outcomes: {
-    death: {
-      total: {
-        value: number;
-      };
-    };
-  };
-};
-
-type OutPutType = {
-  month: string;
-  deaths: number;
-};
-
-const groupByMonth = (dataList: InputType[]): OutPutType[] => {
-  let groupedData = {};
+const groupByMonth = (dataList: ICovidData[]): ICovidDeathData[] => {
+  let groupedData: {[key: string]: { deaths: number } } = {};
 
   dataList.forEach(data => {
     let date = moment(data.date);
@@ -42,7 +27,7 @@ const groupByMonth = (dataList: InputType[]): OutPutType[] => {
       month: key,
       deaths: groupedData[key].deaths
     };
-  }).sort((a, b) => moment().month(a.month).format("M") - moment().month(b.month).format("M"));
+  }).sort((a, b) => moment(a.month, "MMM").month() - moment(b.month, "MMM").month());
 }
 
 export default groupByMonth;

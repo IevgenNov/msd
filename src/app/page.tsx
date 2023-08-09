@@ -35,7 +35,7 @@ export default function Home() {
           </Card>
         </Col>
         <Col span={11} offset={2}>
-          <Card title="Chart Title" bordered={false}>
+          <Card title="Monthly Death Numbers for the Year 2020" bordered={false}>
             <IntervalChart />
             <Row justify="space-between" align="middle">
               <Col>
